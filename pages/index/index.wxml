@@ -1,0 +1,21 @@
+<view class='zdy_con'><text>
+更多精彩微信关注 龙城山大</text>
+</view>
+
+<view class="container">
+  <!-- 头像绘制区域 -->
+  <canvas canvas-id="myAvatar" class="canvas"></canvas>
+
+  <!-- 按钮 -->
+  <button class="btn-save" bindtap="upload">上传头像</button>
+  <button class="btn-save" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取用户头像</button>
+    <button class="btn-save" open-type="share" >分享给朋友</button>
+
+
+  <button disabled="{{ !save }}" class="btn-save" bindtap="saveImg">保存到相册</button>
+
+</view>
+
+<view>
+  <text class='copyright'>Copyright (c) 2019 龙城山大</text>
+</view>

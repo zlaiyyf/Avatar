@@ -1,0 +1,47 @@
+page {
+  background: white;
+}
+.zdy_con{
+  text-align: center;
+
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  padding-top: 28rpx;
+  position: relative;
+  background: white;
+}
+
+.avatar {
+  margin-bottom: -256px;
+}
+.copyright{
+  font-size: 20rpx;
+  color: #999999;
+  position: fixed;
+  text-align: center;
+  bottom: 30rpx;
+  left: 0;
+  right: 0;
+}
+.canvas {
+  background: #f1f1f1;
+
+  margin-left: 50%;
+  position: relative;
+  left: -128px;
+  width: 256px;
+  height: 256px;
+  border-radius: 6rpx
+}
+
+.btn-save {
+  margin-top: 18rpx;
+  background: #28a745;
+  width: 288rpx;
+  color: #fff
+}
