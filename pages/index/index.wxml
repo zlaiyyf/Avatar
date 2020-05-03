@@ -1,5 +1,5 @@
 <view class='zdy_con'><text>
-更多精彩微信关注 龙城山大</text>
+龙城山大出品</text>
 </view>
 
 <view class="container">
@@ -7,6 +7,7 @@
   <canvas canvas-id="myAvatar" class="canvas"></canvas>
 
   <!-- 按钮 -->
+
   <button class="btn-save" bindtap="upload">上传头像</button>
   <button class="btn-save" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取用户头像</button>
     <button class="btn-save" open-type="share" >分享给朋友</button>
@@ -17,5 +18,5 @@
 </view>
 
 <view>
-  <text class='copyright'>Copyright (c) 2019 龙城山大</text>
+  <text class='copyright'>Copyright (c) 2020 龙城山大</text>
 </view>

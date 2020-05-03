@@ -4,7 +4,7 @@ Page({
     save: false,
     src: '',
     hat: {
-      url: '/pages/img/sxu.png',
+      url: '/pages/img/1.png',
       w: 256,
       h: 256,
       x: 0,
@@ -17,8 +17,8 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: "山西大学免挂头像制作", //转发的标题。当前小程序名称
-      imageUrl: '/pages/img/share.png',//自
+      title: "山西大学校庆头像制作", //转发的标题。当前小程序名称
+      imageUrl: '/pages/img/xz.png',//自
       }
   },
 
@@ -42,8 +42,67 @@ Page({
 
   // 绘制头像背景
   drawAvatar: function() {
+    const FileSystemManager = wx.getFileSystemManager()
     var that = this;
     var p = that.data;
+    console.log(p.src,'图片路劲')
+    FileSystemManager.readFile({
+      filePath:p.src,
+      success:res=>{
+      console.log(res.data,'success')
+      wx.cloud.callFunction({
+        name: 'im',
+        data:{'img':res.data},
+        success:res=>{
+          console.log(res.result,)
+          if(res.result.errCode==87014){
+            wx.showModal({
+              title: '违规提示',
+              content: '图片内容含有违法违规内容 请换一张',
+              showCancel: false,           // 是否显示取消按钮，默认为 true
+              // cancelText : "自定取消",
+              // cancelColor: "red",
+              confirmText : "确定",
+              confirmColor : "#000000",
+        
+              /** success返回参数说明
+               * confirm 为 true 时，表示用户点击了确定按钮
+               * cancel 为 true 时，表示用户点击了取消（用于 Android 系统区分点击蒙层关闭还是点击取消按钮关闭）
+              */
+              success:res=> {
+                if (res.confirm) {
+                  this.setData({
+                    save: false
+                  })
+                }
+                if (res.cancel) {
+                  console.log("点击了取消");
+                }
+            }
+          })
+        }
+        },
+        fail:res=>{
+          wx.showToast({
+            title: '未知错误',
+            icon: 'none',
+            duration: 1500
+        })
+             
+        },
+        complete:res=>{
+          console.log(res.result,)
+        }
+      })
+      } ,
+    
+      fail:res=>{
+        console.log(res,'fail')
+      }
+    }
+    )
+   
+
     context = wx.createCanvasContext('myAvatar', this);
     context.clearRect(0, 0, 256, 256)
     context.drawImage(p.src, 0, 0, 256, 256);
@@ -59,7 +118,7 @@ Page({
 
   getUserInfo: function(res) {
     var that=this;
-    console.log(res.detail)
+    console.log('用户头像获取')
     if (res.detail.errMsg == 'getUserInfo:ok') {
       wx.getImageInfo({
           src: res.detail.userInfo.avatarUrl,
